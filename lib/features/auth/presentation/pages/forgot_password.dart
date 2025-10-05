@@ -26,7 +26,8 @@ class ForgotPasswordScreen extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.message)));
-          pushTo(context, Routs.otpVerification);
+          pushTo(context, Routs.otpVerification, extra: cubit.emailController.text.trim());
+          
         } else if (state is ForgotPasswordError) {
           showErrorDialogue(context, state.error);
         }
@@ -37,7 +38,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         body: Padding(
           padding: AppConstants.bodyPadding,
           child: Form(
-            key: cubit.formkeyForgotPassword,
+            key: cubit.formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -70,7 +71,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 MainButton(
                   label: AppStrings.sendCode,
                   onPressed: () {
-                    if (cubit.formkeyForgotPassword.currentState!.validate()) {
+                    if (cubit.formKey.currentState!.validate()) {
                       cubit.forgotPassword();
                     }
                   },

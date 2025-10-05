@@ -7,7 +7,6 @@ import 'package:my_bookia/features/auth/presentation/cubit/auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
   var formKey = GlobalKey<FormState>();
-  var formkeyForgotPassword=GlobalKey<FormState>();
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -63,25 +62,41 @@ class AuthCubit extends Cubit<AuthState> {
       params: AuthParams(email: emailController.text),
     );
     if (res != null) {
-      clearAllFields();
+    
       emit(ForgotPasswordSuccess(res.message!));
     } else {
       emit(ForgotPasswordError('Failed to send reset email'));
     }
   }
 
-  checkForgotPassword() async {
+  checkForgotPassword(String emailFromOtp) async {
     var res = await AuthRepo.checkForgotPassword(
-      email: emailController.text.trim(),
+      email: emailFromOtp,
       otp: otpController.text.trim(),
     );
 
     if (res == true) {
       emit(CheckForgotPasswordCodeSuccessState("OTP Verified Successfully"));
-      otpController.clear();
-      emailController.clear();
     } else {
       emit(CheckForgotPasswordCodeErrorState("Invalid OTP"));
+    }
+  }
+
+  createNewPassword() async {
+    var res = await AuthRepo.creatNewPassword(
+      otp: int.parse(otpController.text),
+      newPassword: passwordController.text,
+      passwordConfirmation: confirmPasswordController.text,
+    );
+
+    if (res == true) {
+      emit(
+        CheckForgotPasswordCodeSuccessState(
+          "New Password Verified Successfully",
+        ),
+      );
+    } else {
+      emit(CheckForgotPasswordCodeErrorState("Invalid password"));
     }
   }
 }

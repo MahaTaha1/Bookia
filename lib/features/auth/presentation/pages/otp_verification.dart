@@ -15,16 +15,25 @@ import 'package:my_bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
-  const OtpVerificationScreen({super.key});
+  const OtpVerificationScreen({super.key, this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<AuthCubit>();
+    print(' Email received from previous screen: $email');
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is CheckForgotPasswordCodeSuccessState) {
           // success
-          pushTo(context, Routs.creatNewPassword);
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
+          pushTo(
+            context,
+            Routs.creatNewPassword,
+            extra: int.parse(cubit.otpController.text),
+          );
         } else if (state is CheckForgotPasswordCodeErrorState) {
           showErrorDialogue(context, state.error);
         }
@@ -78,7 +87,7 @@ class OtpVerificationScreen extends StatelessWidget {
               MainButton(
                 label: AppStrings.verify,
                 onPressed: () {
-                  cubit.checkForgotPassword();
+                  cubit.checkForgotPassword(email!);
                 },
               ),
             ],

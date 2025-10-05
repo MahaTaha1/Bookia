@@ -33,6 +33,12 @@ class AppStrings {
   static const String yourNewPassword =
       'Your new password must be unique from those previously used.';
   static const String resetPassword = 'Reset Password';
-   static const String newPasswordHint = 'New Password';
+  static const String newPasswordHint = 'New Password';
+  static const String bestSeller = 'Best Seller';
+  static const String passwordChanged = 'Password Changed!';
+  static const String yourPasswordChanged =
+      'Your password has been changed successfully.';
+  static const String backToLogin = 'Back to Login';
+  static const String restPassword = 'Reset Password';
 
 }

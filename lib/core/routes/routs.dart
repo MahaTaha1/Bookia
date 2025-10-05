@@ -5,6 +5,7 @@ import 'package:my_bookia/features/auth/presentation/pages/create_new_password_s
 import 'package:my_bookia/features/auth/presentation/pages/forgot_password.dart';
 import 'package:my_bookia/features/auth/presentation/pages/login_screen.dart';
 import 'package:my_bookia/features/auth/presentation/pages/otp_verification.dart';
+import 'package:my_bookia/features/auth/presentation/pages/password_changed_screen.dart';
 import 'package:my_bookia/features/auth/presentation/pages/register_screen.dart';
 import 'package:my_bookia/features/main/main_app_screen.dart';
 import 'package:my_bookia/features/splash/splash_screen.dart';
@@ -19,6 +20,7 @@ class Routs {
   static const String creatNewPassword = '/creatNewPassword';
   static const String forgotPassword = '/forgotPasswordScreen';
   static const String otpVerification = '/otpVerifiction';
+  static const String passwordChanged = '/passwordChanged';
 
   static final routes = GoRouter(
     initialLocation: splash,
@@ -42,24 +44,39 @@ class Routs {
       GoRoute(path: mainApp, builder: (context, state) => MainAppScreen()),
       GoRoute(
         path: creatNewPassword,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: CreateNewPasswordScreen(),
-        ),
+        builder: (context, state) {
+          int otp = state.extra as int;
+          return BlocProvider(
+            create: (context) => AuthCubit(),
+            child: CreateNewPasswordScreen(otp: otp),
+          );
+        },
       ),
       GoRoute(
         path: forgotPassword,
         builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
+          create: (context) {
+            return AuthCubit();
+          },
           child: ForgotPasswordScreen(),
         ),
       ),
       GoRoute(
         path: otpVerification,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: OtpVerificationScreen(),
-        ),
+        builder: (context, state) {
+          final email = state.extra as String?;
+          return BlocProvider(
+            create: (context) {
+              return AuthCubit();
+            },
+            child: OtpVerificationScreen(email: email),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: passwordChanged,
+        builder: (context, state) => PasswordChangedScreen(),
       ),
     ],
   );

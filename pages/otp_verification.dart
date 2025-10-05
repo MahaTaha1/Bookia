@@ -15,7 +15,8 @@ import 'package:my_bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
-  const OtpVerificationScreen({super.key});
+  const OtpVerificationScreen({super.key, this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class OtpVerificationScreen extends StatelessWidget {
               MainButton(
                 label: AppStrings.verify,
                 onPressed: () {
-                  cubit.checkForgotPassword();
+                  cubit.checkForgotPassword(email!);
                 },
               ),
             ],

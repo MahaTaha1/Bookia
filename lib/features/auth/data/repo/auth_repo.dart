@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:my_bookia/core/services/api_endpoints.dart';
 import 'package:my_bookia/core/services/dio_provider.dart';
 import 'package:my_bookia/features/auth/data/models/auth_params.dart';
@@ -77,6 +78,34 @@ class AuthRepo {
       var res = await DioProvider.post(
         endPoint: ApiEndpoints.checkForgotPassword,
         data: {'email': email, 'verify_code': int.tryParse(otp)},
+      );
+
+      if (res.statusCode == 200) {
+        // success
+        return true;
+      } else {
+        // error
+        return false;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return false;
+    }
+  } //method
+
+  static Future<bool> creatNewPassword({
+    required int otp,
+    required String newPassword,
+    required String passwordConfirmation,
+  }) async {
+    try {
+      var res = await DioProvider.post(
+        endPoint: ApiEndpoints.resetPassword,
+        data: {
+          'verify_code': otp,
+          'new_password': newPassword,
+          'new_password_confirmation': passwordConfirmation,
+        },
       );
 
       if (res.statusCode == 200) {
