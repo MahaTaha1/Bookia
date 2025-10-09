@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:my_bookia/core/constants/app_images.dart';
 import 'package:my_bookia/core/routes/navigations.dart';
 import 'package:my_bookia/core/routes/routs.dart';
+import 'package:my_bookia/core/services/local/shared_pref.dart';
 import 'package:my_bookia/core/utils/text_styles.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,9 +17,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    var isLogedIn = SharedPref.getToken() != null;
     Future.delayed(Duration(seconds: 2), () {
-      // ignore: use_build_context_synchronously
-      pushReplacementTo(context, Routs.welcome);
+      if (isLogedIn) {
+        pushReplacementTo(context, Routs.mainApp);
+      } else {
+        pushReplacementTo(context, Routs.welcome);
+      }
     });
 
     super.initState();

@@ -62,7 +62,6 @@ class AuthCubit extends Cubit<AuthState> {
       params: AuthParams(email: emailController.text),
     );
     if (res != null) {
-    
       emit(ForgotPasswordSuccess(res.message!));
     } else {
       emit(ForgotPasswordError('Failed to send reset email'));

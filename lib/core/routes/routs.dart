@@ -7,6 +7,8 @@ import 'package:my_bookia/features/auth/presentation/pages/login_screen.dart';
 import 'package:my_bookia/features/auth/presentation/pages/otp_verification.dart';
 import 'package:my_bookia/features/auth/presentation/pages/password_changed_screen.dart';
 import 'package:my_bookia/features/auth/presentation/pages/register_screen.dart';
+import 'package:my_bookia/features/home/data/models/best_seller_response/product.dart';
+import 'package:my_bookia/features/home/presentation/pages/details_screen.dart';
 import 'package:my_bookia/features/main/main_app_screen.dart';
 import 'package:my_bookia/features/splash/splash_screen.dart';
 import 'package:my_bookia/features/welcom/welcome_screen.dart';
@@ -21,6 +23,7 @@ class Routs {
   static const String forgotPassword = '/forgotPasswordScreen';
   static const String otpVerification = '/otpVerifiction';
   static const String passwordChanged = '/passwordChanged';
+  static const String details = '/details';
 
   static final routes = GoRouter(
     initialLocation: splash,
@@ -78,6 +81,10 @@ class Routs {
         path: passwordChanged,
         builder: (context, state) => PasswordChangedScreen(),
       ),
+
+      GoRoute(path: details, builder: (context, state) {
+        return DetailsScreen(product: state.extra as Product,);
+      }),
     ],
   );
 }

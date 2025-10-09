@@ -40,5 +40,4 @@ class AppStrings {
       'Your password has been changed successfully.';
   static const String backToLogin = 'Back to Login';
   static const String restPassword = 'Reset Password';
-
 }

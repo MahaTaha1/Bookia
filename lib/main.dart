@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookia/core/routes/routs.dart';
 import 'package:my_bookia/core/services/dio_provider.dart';
+import 'package:my_bookia/core/services/local/shared_pref.dart';
 import 'package:my_bookia/core/utils/app_colors.dart';
 import 'package:my_bookia/core/utils/app_fonts.dart';
 import 'package:my_bookia/core/utils/text_styles.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   DioProvider.init();
+  await SharedPref.init();
   runApp(const MyApp());
 }
 
@@ -26,7 +29,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: AppFonts.dmSerifDisplayFamily,
         scaffoldBackgroundColor: AppColors.backgroundColor,
-        appBarTheme: AppBarTheme(backgroundColor: AppColors.backgroundColor),
+        appBarTheme: AppBarTheme(
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: AppColors.backgroundColor,
+        ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primayColor,
           onSurface: AppColors.darkColor,

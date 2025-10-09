@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 extension Navigations on BuildContext {
   pushTo(Widget newScreen) {
@@ -11,7 +9,7 @@ extension Navigations on BuildContext {
 //********************************************************************* */
 extension Sizing on num {
   Widget get h {
-    return SizedBox(height: toDouble(),);
+    return SizedBox(height: toDouble());
   }
 }
 

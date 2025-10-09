@@ -9,8 +9,6 @@ import 'package:my_bookia/core/utils/app_colors.dart';
 import 'package:my_bookia/core/utils/text_styles.dart';
 import 'package:my_bookia/core/widgets/main_button.dart';
 
-
-
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 

@@ -26,8 +26,11 @@ class ForgotPasswordScreen extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.message)));
-          pushTo(context, Routs.otpVerification, extra: cubit.emailController.text.trim());
-          
+          pushTo(
+            context,
+            Routs.otpVerification,
+            extra: cubit.emailController.text.trim(),
+          );
         } else if (state is ForgotPasswordError) {
           showErrorDialogue(context, state.error);
         }

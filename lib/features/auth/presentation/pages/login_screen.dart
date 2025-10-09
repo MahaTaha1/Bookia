@@ -15,7 +15,6 @@ import 'package:my_bookia/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:my_bookia/features/auth/presentation/cubit/auth_state.dart';
 import 'package:my_bookia/features/auth/presentation/widgets/social_login.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

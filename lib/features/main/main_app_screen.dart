@@ -13,12 +13,12 @@ class MainAppScreen extends StatefulWidget {
 
 class _MainAppScreenState extends State<MainAppScreen> {
   int selectedIndex = 0;
-  List<Widget>pages=[HomeScreen(),HomeScreen(),HomeScreen(),HomeScreen()];
+  List<Widget> pages = [HomeScreen(), Container(), Container(), Container()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: pages[selectedIndex],
 
-      body: pages[selectedIndex] ,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) {

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:my_bookia/core/services/api_endpoints.dart';
+import 'package:my_bookia/core/services/api/api_endpoints.dart';
 
 class DioProvider {
   static late Dio dio;
