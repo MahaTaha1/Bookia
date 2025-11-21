@@ -82,9 +82,12 @@ class Routs {
         builder: (context, state) => PasswordChangedScreen(),
       ),
 
-      GoRoute(path: details, builder: (context, state) {
-        return DetailsScreen(product: state.extra as Product,);
-      }),
+      GoRoute(
+        path: details,
+        builder: (context, state) {
+          return DetailsScreen(product: state.extra as Product);
+        },
+      ),
     ],
   );
 }

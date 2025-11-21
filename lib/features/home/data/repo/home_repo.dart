@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:my_bookia/core/services/api/api_endpoints.dart';
-
-import 'package:my_bookia/core/services/dio_provider.dart';
+import 'package:my_bookia/core/services/api/dio_provider.dart';
 import 'package:my_bookia/features/home/data/models/best_seller_response/best_seller_response.dart';
 import 'package:my_bookia/features/home/data/models/slider_response/slider_response.dart';
 
@@ -36,4 +35,4 @@ class HomeRepo {
       return null;
     }
   }
-}// class 
+} // class

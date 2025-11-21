@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_bookia/core/routes/routs.dart';
-import 'package:my_bookia/core/services/dio_provider.dart';
+import 'package:my_bookia/core/services/api/dio_provider.dart';
 import 'package:my_bookia/core/services/local/shared_pref.dart';
 import 'package:my_bookia/core/utils/app_colors.dart';
 import 'package:my_bookia/core/utils/app_fonts.dart';
